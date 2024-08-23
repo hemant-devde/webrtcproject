@@ -3,7 +3,6 @@ import { io } from "socket.io-client";
 import { useNavigate } from "react-router-dom";
 
 import { useSocket } from "../providers/Socket";
-import { usePeer } from "../providers/peer";
 
 
 const Homepage = () =>{
@@ -11,17 +10,17 @@ const    [username , setUsername]=useState('');
 const    [roomID , setRoomID]=useState('');
 const navigate = useNavigate();
 const {socket} =useSocket();
-const   {peer}=usePeer();
 
-const handleRoomJoined = useCallback(({roomID})=>{
-    console.log(`${username} you joined the room  `);
+const handleRoomJoined = useCallback((data)=>{
+    const   { roomID, user}= data;
+    console.log(`${user}you are inside the room :   ` ,roomID);
     // socket.emit('join-room',{username, roomID} );
     navigate(`/room/${roomID}`)
 }
 , [])
 
 const handleJoinRoom = ()=>{
-    
+    console.log("user", username , " " ,roomID);
     socket.emit('join-room',{ user :username,roomID} );
 }
 console.log("socket :", socket);

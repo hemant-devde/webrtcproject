@@ -4,7 +4,7 @@ import { Routes , Route } from "react-router-dom";
 import Homepage from "./pages/Home";
 import './App.css'
 import { SocketProvider } from "./providers/Socket";
-import { PeerProvider } from "./providers/peer";
+import { PeerProvider } from "./providers/Peer";
 import Roompage from "./pages/Room";
 
 
